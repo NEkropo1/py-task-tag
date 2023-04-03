@@ -1,7 +1,7 @@
 body {
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #34373b;
+  background-color: #8277b9;
   color: #b0b0b0;
 }
 
@@ -15,8 +15,8 @@ h1 {
 }
 
 h2 {
-  color: #127756;
-  text-shadow: 0 0 1px #a5a2f8;
+  color: #817dec;
+  text-shadow: 0 0 1px #43c99d;
 }
 
 h3 {
@@ -40,6 +40,17 @@ h3 {
   -webkit-text-fill-color: -moz-default-background-color;
   text-shadow: 2px -2px 3px #9f3def;
   font-weight: bold;
+}
+
+.task-link {
+  color: #540246;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.task-link:hover {
+  color: #52b2ee;
+  text-decoration: underline;
 }
 
 ::selection {

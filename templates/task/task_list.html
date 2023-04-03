@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="text-center">Tasks</h1>
+  <a href="{% url 'task:task-create' %}" class="btn btn-primary link-to-page">
+    Create task
+  </a>
+
+  <ul>
+  {% if tasks %}
+    {% for task in tasks %}
+      <li>{{ task.content }}</li>
+      <li>Deadline: {{ task.deadline|date:"F j, Y, g:i a" }}</li>
+      <li>Created: {{ task.created|date:"F j, Y, g:i a" }}</li>
+      {% if task.tag.all %}
+        <li><p>Tags: {{ task.tag.all|join:", " }}</p></li>
+      {% endif %}
+      <li>
+        <a href="{% url 'task:task-update' task.id %}" class="btn btn-primary">
+          Update
+        </a>
+        <a href="{% url 'task:task-delete' task.id %}" class="btn btn-primary">
+          Delete
+        </a>
+        <form method="post" action="{% url 'task:toggle-task-stance' pk=task.id %}" class="link-to-page">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">
+            {% if task.is_completed %}
+              Undo
+            {% else %}
+              Complete
+            {% endif %}
+          </button>
+        </form>
+      </li>
+
+    {% endfor %}
+  </ul>
+  {% else %}
+    <h2 class="text-center">No tasks currently!</h2>
+  {% endif %}
+{% endblock %}

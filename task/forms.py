@@ -1,13 +1,14 @@
 from django import forms
-from django.forms import CheckboxSelectMultiple
 
 from task.models import Task, Tag
 
 
 class TaskForm(forms.ModelForm):
+    deadline = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type": "date"}))
     tag = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
-        widget=CheckboxSelectMultiple,
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
     )
 
     class Meta:
